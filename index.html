@@ -296,14 +296,14 @@ footer { background: var(--black); border-top: 1px solid var(--border-dark); pad
     <div class="form-gold-line"></div>
     <form action="https://formspree.io/f/xvzdjbkb" method="POST">
       <div class="form-row">
-        <div class="form-group"><label>Prénom</label><input type="text" placeholder="Jean" required></div>
-        <div class="form-group"><label>Nom</label><input type="text" placeholder="Tremblay" required></div>
+        <div class="form-group"><label>Prénom</label><input type="text" name="prenom" placeholder="Jean" required></div>
+        <div class="form-group"><label>Nom</label><input type="text" name="nom" placeholder="Tremblay" required></div>
       </div>
-      <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="(514) 555-0000" required></div>
-      <div class="form-group"><label>Courriel</label><input type="email" placeholder="jean@exemple.com" required></div>
+      <div class="form-group"><label>Téléphone</label><input type="tel" name="telephone" placeholder="(514) 555-0000" required></div>
+      <div class="form-group"><label>Courriel</label><input type="email" name="email" placeholder="jean@exemple.com" required></div>
       <div class="form-group">
         <label>Type de projet</label>
-        <select required>
+        <select name="type_projet" required>
           <option value="" disabled selected>Choisir...</option>
           <option>Cuisine</option>
           <option>Salle de bain</option>
@@ -313,8 +313,8 @@ footer { background: var(--black); border-top: 1px solid var(--border-dark); pad
           <option>Autre</option>
         </select>
       </div>
-      <div class="form-group"><label>Ville / Région</label><input type="text" placeholder="Montréal, Laval, Longueuil..."></div>
-      <div class="form-group"><label>Décrivez votre projet (optionnel)</label><textarea placeholder="Quelques mots sur votre projet..."></textarea></div>
+      <div class="form-group"><label>Ville / Région</label><input type="text" name="ville" placeholder="Montréal, Laval, Longueuil..."></div>
+      <div class="form-group"><label>Décrivez votre projet (optionnel)</label><textarea name="message" placeholder="Quelques mots sur votre projet..."></textarea></div>
       <button type="submit" class="btn-submit">Envoyer ma demande →</button>
       <div class="form-note">Vos informations restent confidentielles</div>
     </form>
