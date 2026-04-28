@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alix Rénovation Inc. | Rénovation Résidentielle · Montréal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:       #0d0d0d;
+  --black-mid:   #161616;
+  --black-light: #222222;
+  --black-card:  #1a1a1a;
+  --gold:        #c8a96e;
+  --gold-light:  #dfc08a;
+  --white:       #ffffff;
+  --off-white:   #f7f5f2;
+  --text-muted:  #888;
+  --border-dark: rgba(200,169,110,0.18);
+  --border-light: #e0dbd3;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 72px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(13,13,13,0.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-dark);
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 500; color: var(--white); text-decoration: none; letter-spacing: 0.03em; }
+.logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-phone { font-size: 13px; font-weight: 500; color: var(--white); text-decoration: none; transition: color 0.2s; }
+.nav-phone:hover { color: var(--gold); }
+.nav-cta { background: var(--gold); color: var(--black); padding: 10px 22px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* HERO */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 460px; padding-top: 72px; }
+
+.hero-left { position: relative; overflow: hidden; background: var(--black); min-height: calc(100vh - 72px); }
+.hero-bg-pattern {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(200,169,110,0.04) 80px),
+              repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,169,110,0.04) 80px);
+}
+.hero-bg-glow { position: absolute; top: 30%; left: 20%; width: 500px; height: 500px; background: radial-gradient(ellipse, rgba(200,169,110,0.07), transparent 70%); pointer-events: none; }
+.hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; padding: 80px 80px 80px 64px; height: 100%; }
+
+.hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--border-dark); color: var(--gold); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 16px; margin-bottom: 40px; width: fit-content; background: rgba(200,169,110,0.05); }
+.hero-badge::before { content: '✓'; }
+
+h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 4.5vw, 68px); font-weight: 500; color: var(--white); line-height: 1.08; margin-bottom: 24px; }
+h1 em { font-style: italic; color: var(--gold); }
+
+.hero-sub { font-size: 15px; font-weight: 300; color: var(--text-muted); line-height: 1.75; max-width: 440px; margin-bottom: 44px; }
+.hero-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 52px; }
+.hero-feature { display: flex; align-items: center; gap: 14px; font-size: 14px; color: rgba(255,255,255,0.8); font-weight: 300; }
+.hero-feature-dot { width: 6px; height: 6px; background: var(--gold); flex-shrink: 0; }
+.hero-stats-row { display: flex; gap: 48px; padding-top: 40px; border-top: 1px solid var(--border-dark); }
+.hero-stat-num { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); font-weight: 400; line-height: 1; }
+.hero-stat-label { font-size: 10px; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 5px; }
+
+/* FORM PANEL */
+.hero-right { background: var(--white); display: flex; flex-direction: column; justify-content: center; padding: 56px 48px; border-left: 1px solid var(--border-dark); overflow-y: auto; }
+.form-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.form-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 500; color: var(--black); line-height: 1.2; margin-bottom: 8px; }
+.form-sub { font-size: 13px; color: #888; margin-bottom: 28px; line-height: 1.6; }
+.form-gold-line { width: 44px; height: 2px; background: var(--gold); margin-bottom: 28px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--border-light); background: var(--off-white); font-family: 'Inter', sans-serif; font-size: 14px; color: var(--black); outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; appearance: none; border-radius: 0; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: var(--white); }
+.form-group textarea { min-height: 80px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-submit { width: 100%; background: var(--black); color: var(--white); border: none; padding: 15px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 6px; }
+.btn-submit:hover { background: var(--gold); color: var(--black); transform: translateY(-1px); }
+.form-note { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 11px; color: #aaa; }
+.form-note::before { content: '🔒'; font-size: 13px; }
+
+/* TRUST BAR */
+.trust-bar { background: var(--black-mid); border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); padding: 22px 0; }
+.trust-bar-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px; }
+.trust-item { display: flex; align-items: center; gap: 12px; }
+.trust-icon { font-size: 20px; }
+.trust-text strong { display: block; font-size: 13px; font-weight: 600; color: var(--white); }
+.trust-text span { font-size: 11px; color: var(--text-muted); }
+
+/* COMMON */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 3.5vw, 46px); font-weight: 500; line-height: 1.15; margin-bottom: 16px; }
+.section-title em { font-style: italic; color: var(--gold); }
+.section-sub { font-size: 15px; color: var(--text-muted); line-height: 1.7; max-width: 500px; }
+
+/* SERVICES */
+.services-section { padding: 120px 0; background: var(--black); }
+.services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; flex-wrap: wrap; gap: 24px; }
+.services-header .section-title { color: var(--white); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.service-card { background: var(--black-card); padding: 48px 40px; position: relative; transition: all 0.3s; border-bottom: 3px solid transparent; }
+.service-card:hover { background: var(--black-light); border-bottom-color: var(--gold); transform: translateY(-4px); }
+.service-num { font-family: 'Playfair Display', serif; font-size: 60px; font-weight: 400; color: rgba(200,169,110,0.07); line-height: 1; margin-bottom: 20px; }
+.service-icon-box { width: 50px; height: 50px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 24px; }
+.service-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: var(--white); margin-bottom: 14px; }
+.service-desc { font-size: 14px; line-height: 1.8; color: var(--text-muted); margin-bottom: 28px; }
+.service-link { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: gap 0.2s; }
+.service-link:hover { gap: 14px; }
+.service-link::after { content: '→'; }
+
+/* PORTFOLIO */
+.portfolio-section { padding: 120px 0; background: var(--black-mid); }
+.portfolio-header { text-align: center; margin-bottom: 60px; }
+.portfolio-header .section-title { color: var(--white); }
+.portfolio-header .section-sub { margin: 0 auto; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.project-card { background: var(--black-card); cursor: pointer; border: 1px solid var(--border-dark); transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+.project-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.6); border-color: var(--gold); }
+.project-thumb { width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative; background: var(--black-light); display: flex; align-items: center; justify-content: center; }
+.project-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+.project-card:hover .project-thumb img { transform: scale(1.05); }
+.project-thumb-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.p1 .project-thumb-placeholder { background: linear-gradient(135deg, #1a1500, #2a2000); }
+.p2 .project-thumb-placeholder { background: linear-gradient(135deg, #001015, #001a22); }
+.p3 .project-thumb-placeholder { background: linear-gradient(135deg, #150000, #220808); }
+.p4 .project-thumb-placeholder { background: linear-gradient(135deg, #001500, #082208); }
+.p5 .project-thumb-placeholder { background: linear-gradient(135deg, #141400, #201f00); }
+.p6 .project-thumb-placeholder { background: linear-gradient(135deg, #08001a, #100028); }
+.thumb-icon { font-size: 36px; opacity: 0.4; }
+.thumb-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); opacity: 0.4; }
+.project-thumb-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; transition: background 0.3s; z-index: 2; }
+.project-card:hover .project-thumb-overlay { background: rgba(0,0,0,0.45); }
+.zoom-icon { width: 50px; height: 50px; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 20px; opacity: 0; transform: scale(0.7); transition: all 0.3s; }
+.project-card:hover .zoom-icon { opacity: 1; transform: scale(1); }
+.photo-badge { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); border: 1px solid var(--border-dark); color: var(--gold); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; padding: 4px 10px; z-index: 3; }
+.project-body { padding: 18px 22px 22px; border-top: 1px solid var(--border-dark); }
+.project-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+.project-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+.project-sub { font-size: 12px; color: var(--text-muted); }
+
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(12px); }
+.lightbox.open { display: flex; }
+.lb-inner { width: 92vw; max-width: 1000px; max-height: 92vh; display: flex; flex-direction: column; }
+.lb-header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 16px; border-bottom: 1px solid var(--border-dark); margin-bottom: 20px; flex-shrink: 0; }
+.lb-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.lb-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--white); }
+.lb-close { width: 40px; height: 40px; border: 1px solid var(--border-dark); background: transparent; color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+.lb-close:hover { border-color: var(--gold); color: var(--gold); }
+.lb-main-wrap { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.lb-main-img { max-width: 100%; max-height: 54vh; object-fit: contain; display: block; }
+.lb-main-placeholder { width: 100%; height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border: 1px dashed var(--border-dark); }
+.lb-placeholder-icon { font-size: 52px; opacity: 0.2; }
+.lb-placeholder-text { font-size: 13px; color: var(--text-muted); text-align: center; line-height: 1.6; }
+.lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: 1px solid var(--border-dark); background: rgba(0,0,0,0.6); color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; backdrop-filter: blur(4px); }
+.lb-arrow:hover { border-color: var(--gold); color: var(--gold); }
+.lb-arrow.prev { left: -24px; }
+.lb-arrow.next { right: -24px; }
+.lb-arrow:disabled { opacity: 0.15; cursor: default; }
+.lb-footer { padding-top: 16px; border-top: 1px solid var(--border-dark); margin-top: 16px; flex-shrink: 0; }
+.lb-counter { font-size: 11px; color: var(--text-muted); text-align: center; margin-bottom: 12px; letter-spacing: 0.1em; }
+.lb-thumbs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.lb-thumb { width: 64px; height: 48px; object-fit: cover; cursor: pointer; border: 2px solid transparent; opacity: 0.5; transition: all 0.2s; }
+.lb-thumb:hover { opacity: 0.85; }
+.lb-thumb.active { border-color: var(--gold); opacity: 1; }
+.lb-hint { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+/* TESTIMONIALS */
+.testimonials-section { padding: 120px 0; background: var(--black); overflow: hidden; }
+.testi-header { text-align: center; margin-bottom: 60px; }
+.testi-header .section-title { color: var(--white); }
+.testi-track-wrap { overflow: hidden; }
+.testi-track { display: flex; gap: 20px; animation: slide 35s linear infinite; }
+.testi-track:hover { animation-play-state: paused; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.testi-card { flex-shrink: 0; width: 340px; background: var(--black-card); border: 1px solid var(--border-dark); padding: 36px; position: relative; }
+.testi-card::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 100px; color: var(--gold); opacity: 0.08; position: absolute; top: -10px; left: 22px; line-height: 1; }
+.testi-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
+.testi-text { font-size: 14px; line-height: 1.8; color: var(--text-muted); font-style: italic; margin-bottom: 24px; }
+.testi-author { display: flex; align-items: center; gap: 14px; }
+.testi-avatar { width: 40px; height: 40px; background: var(--gold); color: var(--black); font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.testi-name { font-size: 14px; font-weight: 600; color: var(--white); }
+.testi-city { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* CTA */
+.cta-section { padding: 120px 0; background: var(--black-mid); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(ellipse, rgba(200,169,110,0.05), transparent 70%); pointer-events: none; }
+.cta-section .section-title { color: var(--white); }
+.cta-section .section-sub { margin: 0 auto 48px; }
+.btn-cta-lg { display: inline-block; background: var(--gold); color: var(--black); padding: 18px 56px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+.btn-cta-lg:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(200,169,110,0.25); }
+.cta-phones { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-top: 52px; }
+.cta-phone-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+.cta-phone-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--white); text-decoration: none; display: block; transition: color 0.2s; }
+.cta-phone-num:hover { color: var(--gold); }
+
+/* FOOTER */
+footer { background: var(--black); border-top: 1px solid var(--border-dark); padding: 72px 0 40px; }
+.footer-gold-bar { height: 2px; background: linear-gradient(to right, var(--gold), transparent); margin-bottom: 40px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 52px; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: var(--white); margin-bottom: 14px; }
+.footer-logo span { color: var(--gold); }
+.footer-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
+.footer-rbq { font-size: 11px; color: var(--gold); letter-spacing: 0.1em; font-weight: 500; }
+.footer-col-title { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border-dark); }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid var(--border-dark); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.25); flex-wrap: wrap; gap: 12px; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { min-height: 85vh; }
+  .hero-right { padding: 48px 32px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+}
+@media (max-width: 640px) {
+  .hero-content { padding: 48px 24px; }
+  .hero-stats-row { gap: 28px; }
+  .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .container { padding: 0 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .trust-bar-inner { padding: 0 20px; }
+  .cta-phones { gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Alix <span>Rénovation Inc</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Réalisations</a></li>
+    <li><a href="#temoignages">Témoignages</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:4386807356" class="nav-phone">(438) 680-7356</a>
+    <a href="#contact" class="nav-cta">Soumission gratuite</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-bg-glow"></div>
+    <div class="hero-content">
+      <div class="hero-badge reveal">Entrepreneur Certifié RBQ · 5837-4190-01</div>
+      <h1 class="reveal" style="transition-delay:.1s">
+        Transformez votre<br>espace avec<br><em>excellence</em>
+      </h1>
+      <p class="hero-sub reveal" style="transition-delay:.2s">
+        Spécialistes en rénovation résidentielle et après-sinistre. Des finitions qui durent, une équipe qui livre.
+      </p>
+      <div class="hero-features reveal" style="transition-delay:.3s">
+        <div class="hero-feature"><div class="hero-feature-dot"></div>Cuisine, salle de bain, sous-sol, plancher</div>
+        <div class="hero-feature"><div class="hero-feature-dot"></div>Après-sinistre, coordination avec assurances</div>
+        <div class="hero-feature"><div class="hero-feature-dot"></div>Soumission détaillée en 48 heures</div>
+        <div class="hero-feature"><div class="hero-feature-dot"></div>Montréal · Rive-Nord · Rive-Sud</div>
+      </div>
+      <div class="hero-stats-row reveal" style="transition-delay:.4s">
+        <div><div class="hero-stat-num">10+</div><div class="hero-stat-label">Années d'expérience</div></div>
+        <div><div class="hero-stat-num">100+</div><div class="hero-stat-label">Projets réalisés</div></div>
+        <div><div class="hero-stat-num">★★★★★</div><div class="hero-stat-label">Satisfaction client</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="hero-right" id="contact">
+    <div class="form-eyebrow">Soumission gratuite</div>
+    <div class="form-title">Obtenez votre prix<br>sans engagement</div>
+    <p class="form-sub">Réponse garantie en moins de 48h. Aucun frais, aucune obligation.</p>
+    <div class="form-gold-line"></div>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group"><label>Prénom</label><input type="text" placeholder="Jean" required></div>
+        <div class="form-group"><label>Nom</label><input type="text" placeholder="Tremblay" required></div>
+      </div>
+      <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="(514) 555-0000" required></div>
+      <div class="form-group"><label>Courriel</label><input type="email" placeholder="jean@exemple.com" required></div>
+      <div class="form-group">
+        <label>Type de projet</label>
+        <select required>
+          <option value="" disabled selected>Choisir...</option>
+          <option>Cuisine</option>
+          <option>Salle de bain</option>
+          <option>Sous-sol</option>
+          <option>Rénovation complète</option>
+          <option>Après-sinistre</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Ville / Région</label><input type="text" placeholder="Montréal, Laval, Longueuil..."></div>
+      <div class="form-group"><label>Décrivez votre projet (optionnel)</label><textarea placeholder="Quelques mots sur votre projet..."></textarea></div>
+      <button type="submit" class="btn-submit">Envoyer ma demande →</button>
+      <div class="form-note">Vos informations restent confidentielles</div>
+    </form>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><div class="trust-icon">🏅</div><div class="trust-text"><strong>Certifié RBQ</strong><span>Licence 5837-4190-01</span></div></div>
+    <div class="trust-item"><div class="trust-icon">⏱️</div><div class="trust-text"><strong>Soumission en 48h</strong><span>Réponse rapide garantie</span></div></div>
+    <div class="trust-item"><div class="trust-icon">🛡️</div><div class="trust-text"><strong>Après-sinistre</strong><span>Coordination avec assurances</span></div></div>
+    <div class="trust-item"><div class="trust-icon">📍</div><div class="trust-text"><strong>Grand Montréal</strong><span>Rive-Nord · Rive-Sud</span></div></div>
+    <div class="trust-item"><div class="trust-icon">⭐</div><div class="trust-text"><strong>100+ projets</strong><span>15 ans d'expérience</span></div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="services-section">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="section-eyebrow reveal">Nos expertises</div>
+        <h2 class="section-title reveal" style="transition-delay:.1s">Ce que nous<br><em>réalisons</em></h2>
+      </div>
+      <p class="section-sub reveal" style="transition-delay:.15s">De la démolition aux finitions, nous prenons en charge votre projet du début à la fin.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="service-icon-box">🏗️</div>
+        <div class="service-name">Rénovation Complète</div>
+        <p class="service-desc">De la démolition aux finitions les plus fines, nous donnons vie à vos projets avec rigueur. Chantier propre, délais respectés, résultat durable.</p>
+        <a href="#contact" class="service-link">Demander une soumission</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.1s">
+        <div class="service-num">02</div>
+        <div class="service-icon-box">🍽️</div>
+        <div class="service-name">Cuisine & Salle de Bain</div>
+        <p class="service-desc">Installation d'armoires, pose de céramique, plancher chauffant, plomberie. Nous modernisons vos pièces d'eau avec une finition impeccable.</p>
+        <a href="#contact" class="service-link">Demander une soumission</a>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.2s">
+        <div class="service-num">03</div>
+        <div class="service-icon-box">🛡️</div>
+        <div class="service-name">Après-Sinistre</div>
+        <p class="service-desc">Dégât d'eau, incendie, moisissures. Nous coordonnons avec les assureurs pour une prise en charge rapide et une reconstruction sans stress.</p>
+        <a href="#contact" class="service-link">Demander une soumission</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="portfolio-section">
+  <div class="container">
+    <div class="portfolio-header">
+      <div class="section-eyebrow reveal">Nos réalisations</div>
+      <h2 class="section-title reveal" style="transition-delay:.1s">Projets qui <em>inspirent</em></h2>
+      <p class="section-sub reveal" style="transition-delay:.15s">Cliquez sur un projet pour voir toutes les photos.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="project-card p1 reveal" onclick="openLightbox(0)">
+        <div class="project-thumb"><div class="project-thumb-placeholder"><div class="thumb-icon">🍽️</div><div class="thumb-label">Voir les photos</div></div><div class="project-thumb-overlay"><div class="zoom-icon">⊕</div></div><div class="photo-badge">📷 Galerie</div></div>
+        <div class="project-body"><div class="project-tag">Cuisine Moderne</div><div class="project-title">Condo à Saint-Léonard</div><div class="project-sub">Transformation complète de la cuisine</div></div>
+      </div>
+      <div class="project-card p2 reveal" style="transition-delay:.08s" onclick="openLightbox(1)">
+        <div class="project-thumb"><div class="project-thumb-placeholder"><div class="thumb-icon">🛁</div><div class="thumb-label">Voir les photos</div></div><div class="project-thumb-overlay"><div class="zoom-icon">⊕</div></div><div class="photo-badge">📷 Galerie</div></div>
+        <div class="project-body"><div class="project-tag">Salle de bain & Plancher chauffant</div><div class="project-title">Résidence à Laval</div><div class="project-sub">Rénovation complète avec plancher chauffant</div></div>
+      </div>
+      <div class="project-card p3 reveal" style="transition-delay:.16s" onclick="openLightbox(2)">
+        <div class="project-thumb"><div class="project-thumb-placeholder"><div class="thumb-icon">🚿</div><div class="thumb-label">Voir les photos</div></div><div class="project-thumb-overlay"><div class="zoom-icon">⊕</div></div><div class="photo-badge">📷 Galerie</div></div>
+        <div class="project-body"><div class="project-tag">Salle de Bain</div><div class="project-title">Résidence à Dorval</div><div class="project-sub">Finitions de qualité supérieure</div></div>
+      </div>
+      <div class="project-card p4 reveal" style="transition-delay:.24s" onclick="openLightbox(3)">
+        <div class="project-thumb"><div class="project-thumb-placeholder"><div class="thumb-icon">🏠</div><div class="thumb-label">Voir les photos</div></div><div class="project-thumb-overlay"><div class="zoom-icon">⊕</div></div><div class="photo-badge">📷 Galerie</div></div>
+        <div class="project-body"><div class="project-tag">Sous-Sol Familial</div><div class="project-title">Résidence à Brossard</div><div class="project-sub">Espace de vie fonctionnel</div></div>
+      </div>
+      <div class="project-card p5 reveal" style="transition-delay:.32s" onclick="openLightbox(4)">
+        <div class="project-thumb"><div class="project-thumb-placeholder"><div class="thumb-icon">✨</div><div class="thumb-label">Voir les photos</div></div><div class="project-thumb-overlay"><div class="zoom-icon">⊕</div></div><div class="photo-badge">📷 Galerie</div></div>
+        <div class="project-body"><div class="project-tag">Cuisine Moderne</div><div class="project-title">Résidence à Montréal</div><div class="project-sub">Nouveaux comptoirs & modernisation</div></div>
+      </div>
+      <div class="project-card p6 reveal" style="transition-delay:.4s" onclick="openLightbox(5)">
+        <div class="project-thumb"><div class="project-thumb-placeholder"><div class="thumb-icon">🪜</div><div class="thumb-label">Voir les photos</div></div><div class="project-thumb-overlay"><div class="zoom-icon">⊕</div></div><div class="photo-badge">📷 Galerie</div></div>
+        <div class="project-body"><div class="project-tag">Sous-Sol & Escaliers</div><div class="project-title">Résidence à Montréal</div><div class="project-sub">Transformation complète</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lb-inner">
+    <div class="lb-header">
+      <div><div class="lb-tag" id="lb-tag"></div><div class="lb-title" id="lb-title"></div></div>
+      <button class="lb-close" onclick="closeLightbox()">✕</button>
+    </div>
+    <div class="lb-main-wrap">
+      <button class="lb-arrow prev" id="lb-prev" onclick="lbNav(-1)">&#8592;</button>
+      <div id="lb-main-content"></div>
+      <button class="lb-arrow next" id="lb-next" onclick="lbNav(1)">&#8594;</button>
+    </div>
+    <div class="lb-footer">
+      <div class="lb-counter" id="lb-counter"></div>
+      <div class="lb-thumbs" id="lb-thumbs"></div>
+      <div class="lb-hint" id="lb-hint"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="temoignages" class="testimonials-section">
+  <div class="container">
+    <div class="testi-header">
+      <div class="section-eyebrow reveal">Témoignages</div>
+      <h2 class="section-title reveal" style="transition-delay:.1s">Ce que disent<br><em>nos clients</em></h2>
+    </div>
+  </div>
+  <div class="testi-track-wrap">
+    <div class="testi-track">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">L'équipe a transformé notre cuisine en un espace magnifique. Professionnalisme et attention aux détails remarquables.</p><div class="testi-author"><div class="testi-avatar">ML</div><div><div class="testi-name">Martin Leblanc</div><div class="testi-city">Terrebonne</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Après un dégât d'eau majeur, ils ont pris en charge tous les travaux. Service impeccable, rapide et professionnel.</p><div class="testi-author"><div class="testi-avatar">ST</div><div><div class="testi-name">Sophie Tremblay</div><div class="testi-city">Laval</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Rénovation complète de notre salle de bain. Le résultat dépasse toutes nos attentes. Une équipe passionnée!</p><div class="testi-author"><div class="testi-avatar">JR</div><div><div class="testi-name">Jean-François Roy</div><div class="testi-city">Mascouche</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Qualité de travail supérieure et respect des délais. Notre sous-sol est maintenant l'endroit préféré de toute la famille.</p><div class="testi-author"><div class="testi-avatar">CL</div><div><div class="testi-name">Catherine Lemieux</div><div class="testi-city">Repentigny</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Du début à la fin, tout était parfait. Communication claire, travail soigné et budget respecté. C'est rare!</p><div class="testi-author"><div class="testi-avatar">PD</div><div><div class="testi-name">Pierre Dupuis</div><div class="testi-city">Rosemère</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Service après-sinistre impeccable. Ils ont géré toute la coordination avec l'assurance. Quel soulagement!</p><div class="testi-author"><div class="testi-avatar">RL</div><div><div class="testi-name">Robert Laroche</div><div class="testi-city">Saint-Eustache</div></div></div></div>
+      <!-- Duplicate -->
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">L'équipe a transformé notre cuisine en un espace magnifique. Professionnalisme et attention aux détails remarquables.</p><div class="testi-author"><div class="testi-avatar">ML</div><div><div class="testi-name">Martin Leblanc</div><div class="testi-city">Terrebonne</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Après un dégât d'eau majeur, ils ont pris en charge tous les travaux. Service impeccable, rapide et professionnel.</p><div class="testi-author"><div class="testi-avatar">ST</div><div><div class="testi-name">Sophie Tremblay</div><div class="testi-city">Laval</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Rénovation complète de notre salle de bain. Le résultat dépasse toutes nos attentes. Une équipe passionnée!</p><div class="testi-author"><div class="testi-avatar">JR</div><div><div class="testi-name">Jean-François Roy</div><div class="testi-city">Mascouche</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Qualité de travail supérieure et respect des délais. Notre sous-sol est maintenant l'endroit préféré de toute la famille.</p><div class="testi-author"><div class="testi-avatar">CL</div><div><div class="testi-name">Catherine Lemieux</div><div class="testi-city">Repentigny</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Du début à la fin, tout était parfait. Communication claire, travail soigné et budget respecté. C'est rare!</p><div class="testi-author"><div class="testi-avatar">PD</div><div><div class="testi-name">Pierre Dupuis</div><div class="testi-city">Rosemère</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Service après-sinistre impeccable. Ils ont géré toute la coordination avec l'assurance. Quel soulagement!</p><div class="testi-author"><div class="testi-avatar">RL</div><div><div class="testi-name">Robert Laroche</div><div class="testi-city">Saint-Eustache</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-eyebrow reveal">Commençons votre projet</div>
+    <h2 class="section-title reveal" style="transition-delay:.1s">Prêt à transformer<br><em>votre espace?</em></h2>
+    <p class="section-sub reveal" style="transition-delay:.15s">Soumission gratuite et détaillée en moins de 48 heures. Aucun engagement.</p>
+    <div class="reveal" style="transition-delay:.2s"><a href="#contact" class="btn-cta-lg">Demander ma soumission gratuite</a></div>
+    <div class="cta-phones reveal" style="transition-delay:.25s">
+      <div><div class="cta-phone-label">Ligne principale</div><a href="tel:4386807356" class="cta-phone-num">(438) 680-7356</a></div>
+      <div><div class="cta-phone-label">Ligne secondaire</div><a href="tel:4385212649" class="cta-phone-num">(438) 521-2649</a></div>
+      <div><div class="cta-phone-label">Courriel</div><a href="mailto:alixrenovation@hotmail.com" class="cta-phone-num" style="font-size:17px;">alixrenovation@hotmail.com</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-gold-bar"></div>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Alix <span>Rénovation</span> Inc.</div>
+        <p class="footer-desc">Excellence en rénovation résidentielle depuis plus de 15 ans. Nous transformons vos espaces avec passion et rigueur.</p>
+        <div class="footer-rbq">RBQ: 5837-4190-01</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Rénovation complète</a></li>
+          <li><a href="#services">Cuisine & Salle de bain</a></li>
+          <li><a href="#services">Après-sinistre</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#portfolio">Réalisations</a></li>
+          <li><a href="#temoignages">Témoignages</a></li>
+          <li><a href="#contact">Soumission gratuite</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">Montréal · Rive-Nord · Rive-Sud</a></li>
+          <li><a href="tel:4386807356">(438) 680-7356</a></li>
+          <li><a href="tel:4385212649">(438) 521-2649</a></li>
+          <li><a href="mailto:alixrenovation@hotmail.com">alixrenovation@hotmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Alix Rénovation Inc. Tous droits réservés.</span>
+      <span>Montréal, Québec</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// REVEAL
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+setTimeout(() => document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible')), 100);
+
+// FORM
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = '✓ Demande envoyée!';
+  btn.style.background = '#c8a96e';
+  btn.style.color = '#0d0d0d';
+  setTimeout(() => { btn.textContent = 'Envoyer ma demande →'; btn.style.background = ''; btn.style.color = ''; }, 3000);
+}
+
+// LIGHTBOX
+// Pour ajouter vos photos: images: ['images/photo1.jpg', 'images/photo2.jpg']
+const projects = [
+  { tag: 'Cuisine Moderne', title: 'Condo à Saint-Léonard', icon: '🍽️', images: [] },
+  { tag: 'Salle de bain & Plancher chauffant', title: 'Résidence à Laval', icon: '🛁', images: [] },
+  { tag: 'Salle de Bain', title: 'Résidence à Dorval', icon: '🚿', images: [] },
+  { tag: 'Sous-Sol Familial', title: 'Résidence à Brossard', icon: '🏠', images: [] },
+  { tag: 'Cuisine Moderne', title: 'Résidence à Montréal', icon: '✨', images: [] },
+  { tag: 'Sous-Sol & Escaliers', title: 'Résidence à Montréal', icon: '🪜', images: [] },
+];
+let curP = 0, curI = 0;
+
+function openLightbox(i) { curP = i; curI = 0; renderLB(); document.getElementById('lightbox').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+function closeLightboxOutside(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
+function lbNav(dir) { const t = projects[curP].images.length || 1; curI = (curI + dir + t) % t; renderLB(); }
+function goToPhoto(i) { curI = i; renderLB(); }
+
+function renderLB() {
+  const p = projects[curP];
+  const has = p.images && p.images.length > 0;
+  const total = has ? p.images.length : 0;
+  document.getElementById('lb-tag').textContent = p.tag;
+  document.getElementById('lb-title').textContent = p.title;
+  const main = document.getElementById('lb-main-content');
+  main.innerHTML = has
+    ? `<img class="lb-main-img" src="${p.images[curI]}" alt="${p.title}">`
+    : `<div class="lb-main-placeholder"><div class="lb-placeholder-icon">${p.icon}</div><div class="lb-placeholder-text">Les photos de ce projet arrivent bientôt.<br>Appelez-nous pour voir nos réalisations.</div></div>`;
+  document.getElementById('lb-counter').textContent = has ? `Photo ${curI + 1} / ${total}` : '';
+  document.getElementById('lb-prev').disabled = !has || total <= 1;
+  document.getElementById('lb-next').disabled = !has || total <= 1;
+  document.getElementById('lb-thumbs').innerHTML = (has && total > 1)
+    ? p.images.map((src, i) => `<img class="lb-thumb ${i === curI ? 'active' : ''}" src="${src}" onclick="goToPhoto(${i})">`).join('') : '';
+  document.getElementById('lb-hint').textContent = has ? '' : 'Contactez-nous au (438) 680-7356 pour voir nos réalisations';
+}
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+</script>
+</body>
+</html>
