@@ -520,14 +520,7 @@ reveals.forEach(el => observer.observe(el));
 setTimeout(() => document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible')), 100);
 
 // FORM
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.btn-submit');
-  btn.textContent = '✓ Demande envoyée!';
-  btn.style.background = '#c8a96e';
-  btn.style.color = '#0d0d0d';
-  setTimeout(() => { btn.textContent = 'Envoyer ma demande →'; btn.style.background = ''; btn.style.color = ''; }, 3000);
-}
+
 
 // LIGHTBOX
 // Pour ajouter vos photos: images: ['images/photo1.jpg', 'images/photo2.jpg']
